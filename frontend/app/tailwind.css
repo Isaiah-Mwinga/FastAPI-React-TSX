@@ -1,0 +1,19 @@
+/* tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Add custom styles here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define your gray color theme */
+:root {
+  --gray: #b6b5ad;
+}
+
+/* Apply the gold color to specific elements */
+body {
+  background-color: var(--gray);
+}

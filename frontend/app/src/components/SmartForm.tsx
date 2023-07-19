@@ -17,12 +17,12 @@ const SmartForm = ({ topic, formType, rawData }) => {
     fetchSchema();
   }, [formType, topic]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     // Handle form submission based on formType
   };
 
-  const handleChange = (event) => {
+  const handleChange = () => {
     // Handle form field changes
   };
 

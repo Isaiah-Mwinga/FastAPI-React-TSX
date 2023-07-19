@@ -21,19 +21,19 @@ const MachineTable = () => {
   return (
     <div>
       <h2>Machines</h2>
-      <table>
+      <table className='w-full table-auto'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th className='px-4 py-2'>Name</th>
+            <th className='px-4 py-2'>Description</th>
             {/* Add more table headers as needed */}
           </tr>
         </thead>
         <tbody>
           {machines.map((machine) => (
-            <tr key={machine.id}>
-              <td>{machine.name}</td>
-              <td>{machine.description}</td>
+            <tr key={machine.id} className="bg-white border-t border-gray-200">
+              <td className='px-4 py-2'>{machine.name}</td>
+              <td className='px-4 py-2'>{machine.description}</td>
               {/* Add more table cells based on machine properties */}
             </tr>
           ))}
