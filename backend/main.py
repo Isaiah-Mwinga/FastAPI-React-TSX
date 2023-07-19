@@ -77,3 +77,11 @@ async def get_machine_schema(method: str):
         return MachineUpdate.schema_json(indent=2)
     else:
         return {"message": "Invalid method"}
+
+
+
+@app.get("/openapi.yaml")
+async def get_openapi_yaml():
+    # Read the OpenAPI YAML from the file
+    with open("openapi.yaml") as file:
+        return file.read()
