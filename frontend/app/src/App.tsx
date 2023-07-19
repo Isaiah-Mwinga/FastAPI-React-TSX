@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MachinesPage from './pages/MachinesPage';
 import MachineEditPage from './pages/MachineEditPage';
 import MachineCreatePage from './pages/MachineCreatePage';
@@ -7,11 +6,12 @@ import MachineCreatePage from './pages/MachineCreatePage';
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={MachinesPage} />
-        <Route path="/machines/:machineId/edit" component={MachineEditPage} />
-        <Route path="/machines/create" component={MachineCreatePage} />
-      </Switch>
+      <Routes>
+        {/* Use the `element` prop to specify the component or element for each route */}
+        <Route path="/" element={<MachinesPage />} />
+        <Route path="/machines/:machineId/edit" element={<MachineEditPage />} />
+        <Route path="/machines/create" element={<MachineCreatePage />} />
+      </Routes>
     </Router>
   );
 };

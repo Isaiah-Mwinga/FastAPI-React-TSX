@@ -1,4 +1,3 @@
-import React from 'react';
 import MachineTable from '../components/MachineTable';
 
 const MachinesPage = () => {

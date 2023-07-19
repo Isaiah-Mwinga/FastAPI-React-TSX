@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
+
 
 const MachineForm = ({ formType, rawData }) => {
   const [formData, setFormData] = useState({});
