@@ -50,7 +50,7 @@ function MachineCreate() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container flex justify-center mx-auto p-4 ">
       <h2 className=" flex justify-center text-2xl font-bold mb-4">Create Machine</h2>
       <form onSubmit={handleSubmit} className=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
