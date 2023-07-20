@@ -8,6 +8,7 @@ interface MachineData {
   number: number;
   float_number: number;
   enum: string;
+  password: string;
 }
 
 function MachineCreate() {
@@ -18,6 +19,7 @@ function MachineCreate() {
     number: 0,
     float_number: 0,
     enum: '',
+    password: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +42,7 @@ function MachineCreate() {
         number: 0,
         float_number: 0,
         enum: '',
+        password: '',
       });
     } catch (error) {
       console.error('Error creating machine:', error);
@@ -48,8 +51,8 @@ function MachineCreate() {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Create Machine</h2>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 className=" flex justify-center text-2xl font-bold mb-4">Create Machine</h2>
+      <form onSubmit={handleSubmit} className=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
             Name:
@@ -118,6 +121,18 @@ function MachineCreate() {
             type="text"
             name="enum"
             value={machineData.enum}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+            password:
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={machineData.password}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
