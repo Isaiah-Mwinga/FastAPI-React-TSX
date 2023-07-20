@@ -1,0 +1,79 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+interface MachineData {
+  name: string;
+  location: string;
+  email: string;
+  number: number;
+  float_number: number;
+  enum: string;
+}
+
+function MachineCreate() {
+  const [machineData, setMachineData] = useState<MachineData>({
+    name: '',
+    location: '',
+    email: '',
+    number: 0,
+    float_number: 0,
+    enum: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setMachineData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:8000/machine/create', machineData);
+      alert('Machine created successfully!');
+      setMachineData({
+        name: '',
+        location: '',
+        email: '',
+        number: 0,
+        float_number: 0,
+        enum: '',
+      });
+    } catch (error) {
+      console.error('Error creating machine:', error);
+    }
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Create Machine</h2>
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+            Name:
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={machineData.name}
+            onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        {/* Add other fields here */}
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default MachineCreate;
