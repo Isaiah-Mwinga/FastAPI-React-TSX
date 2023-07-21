@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from enum import Enum
-from typing import List
+from typing import List, Optional, Union
 
 class MachineStatus(str, Enum):
     active = "active"
@@ -29,7 +29,8 @@ class MachineRead(BaseModel):
     number: int
     float_number: float
     enum: MachineStatus
-    created_at: datetime
+    created_at: Optional[Union[str, datetime]] = None
+    edited_at: Optional[Union[str, datetime]] = None
 
     class Config:
         orm_mode = True

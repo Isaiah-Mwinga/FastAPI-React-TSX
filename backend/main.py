@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List
 
 
-from schema.schemas import MachineCreate, MachineUpdate
+from schema.schemas import MachineCreate, MachineUpdate, MachineRead
 from crud import crud
 from db.database import SessionLocal, engine
 from model import models
@@ -13,6 +14,7 @@ models.Base.metadata.create_all(bind=engine)
 
 # Allow CORS
 origins = [
+    "http://localhost:5173", 
     "http://localhost",
     "http://localhost:3000",
 ]
@@ -35,7 +37,7 @@ async def db_session_middleware(request, call_next):
     return response
 
 
-@app.post("/machine/create")
+@app.post("/machine/create", response_model=MachineRead)
 async def create_machine(machine: MachineCreate):
     db = SessionLocal()
     db_machine = models.Machine(**machine.dict())
@@ -45,7 +47,7 @@ async def create_machine(machine: MachineCreate):
     return db_machine
 
 
-@app.get("/machine/get")
+@app.get("/machine/get", response_model=List[MachineRead])
 async def get_machine(id: int = None, email: str = None):
     db = SessionLocal()
     query = db.query(models.Machine)
@@ -57,7 +59,7 @@ async def get_machine(id: int = None, email: str = None):
     return machines
 
 
-@app.put("/machine/update")
+@app.put("/machine/update", response_model=MachineRead)
 async def update_machine(machine_id: int, machine: MachineUpdate):
     db = SessionLocal()
     db_machine = db.query(models.Machine).filter(models.Machine.id == machine_id).first()
